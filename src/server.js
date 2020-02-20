@@ -3,6 +3,7 @@ import express from "express";
 import connectDb from "./config/connectDB";
 import configViewEngine from "./config/viewEngine";
 import initRouter from "./routes";
+import bodyParser from "body-parser";
 
 const app = express();
 
@@ -10,6 +11,8 @@ const app = express();
 connectDb();
 // config view engine
 configViewEngine(app);
+// body-parsers
+app.use(bodyParser.urlencoded({ extend: true}));
 // init routes
 initRouter(app);
 
