@@ -2,6 +2,7 @@ require("dotenv").config();
 import express from "express";
 import connectDb from "./config/connectDB";
 import configViewEngine from "./config/viewEngine";
+import initRouter from "./routes";
 
 const app = express();
 
@@ -9,13 +10,9 @@ const app = express();
 connectDb();
 // config view engine
 configViewEngine(app);
+// init routes
+initRouter(app);
 
-app.get('/', (req,res)=>{
-    res.render("main/master");
-});
-app.get('/login-register', (req,res)=>{
-    res.render("auth/loginRegister");
-});
 
 const port = process.env.PORT || 8080;
 
